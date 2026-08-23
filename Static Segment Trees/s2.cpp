@@ -38,3 +38,27 @@ struct Segment_Tree{
                query(2 * node + 2, mid + 1, end, l, r);
     }
 };
+
+int32_t main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    int n, q;
+    cin >> n >> q;
+    vector<int> array(n); // 0-indexed array
+    Segment_Tree segment(n);
+    segment.build(array, 0, 0, n - 1);
+
+    while (q--){
+        int operation, x, y;
+        cin >> operation >> x >> y;
+        if (operation == 1){
+            segment.point_update(0, 0, n - 1, x, y);
+        } else if (operation == 2){
+            cout << segment.query(0, 0, n - 1, x, y) << '\n';
+        }
+    }
+    
+    return 0;
+}
